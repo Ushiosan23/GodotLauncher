@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<menu name="tray_menu">
+	<item name="Open" command="open"/>
+	<item name="Configuration" command="config"/>
+	<separator/>
+	<item name="Quit" command="quit"/>
+</menu>
