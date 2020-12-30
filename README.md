@@ -8,6 +8,17 @@ and manage your projects by engine version. It is very useful if you have a few,
 versions. Or if you just want to make small changes to your project or just want to launch a project scene without starting
 the full program.
 
+## Application Preview
+
+- Desktop Preview
+	- ![Desktop App](screenshots/Screenshot 2020-12-29 212205.png)
+- Dark theme application
+	- ![Dark Theme](screenshots/Screenshot 2020-12-29 212134.png)
+- System Tray
+	- ![System Tray](screenshots/Screenshot 2020-12-29 212038.png)
+- Popup Menu Tray
+	- ![Tray Popup](screenshots/Screenshot 2020-12-29 211953.png)
+
 ## Features
 
 - Engines
