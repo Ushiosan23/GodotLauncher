@@ -11,13 +11,13 @@ the full program.
 ## Application Preview
 
 - Desktop Preview
-	- ![Desktop App](screenshots/Screenshot 2020-12-29 212205.png)
+	- ![Desktop App](screenshots/Screenshot%202020-12-29%20212205.png)
 - Dark theme application
-	- ![Dark Theme](screenshots/Screenshot 2020-12-29 212134.png)
+	- ![Dark Theme](screenshots/Screenshot%202020-12-29%20212134.png)
 - System Tray
-	- ![System Tray](screenshots/Screenshot 2020-12-29 212038.png)
+	- ![System Tray](screenshots/Screenshot%202020-12-29%20212038.png)
 - Popup Menu Tray
-	- ![Tray Popup](screenshots/Screenshot 2020-12-29 211953.png)
+	- ![Tray Popup](screenshots/Screenshot%202020-12-29%20211953.png)
 
 ## Features
 
