@@ -6,6 +6,8 @@ import javafx.geometry.Dimension2D;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ButtonType;
+import javafx.scene.image.Image;
 import javafx.stage.StageStyle;
 import org.godot.launcher.core.BaseApplication;
 import org.godot.launcher.core.screen.ScreenUtils;
@@ -15,13 +17,29 @@ import org.godot.launcher.utils.xml.PopupMenuLoader;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.net.URL;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.Optional;
 
 /**
  * This class manage application behaviour.
  */
 public final class ApplicationLauncher extends BaseApplication {
+
+	/* ---------------------------------------------------------
+	 *
+	 * Properties
+	 *
+	 * --------------------------------------------------------- */
+
+	/**
+	 * Current application
+	 */
+	private static ApplicationLauncher currentLauncher;
+
+	/* ---------------------------------------------------------
+	 *
+	 * Implemented methods
+	 *
+	 * --------------------------------------------------------- */
 
 	/**
 	 * Called after environment was initialized
@@ -30,7 +48,25 @@ public final class ApplicationLauncher extends BaseApplication {
 	 */
 	@Override
 	protected void onReady() throws Exception {
+		currentLauncher = this;
 		configureLauncher();
+
+//		EngineServerAccessor.getAvailableEngines(null);
+	}
+
+	/* ---------------------------------------------------------
+	 *
+	 * Methods
+	 *
+	 * --------------------------------------------------------- */
+
+	/**
+	 * Get current application instance
+	 *
+	 * @return {@link ApplicationLauncher} current application object
+	 */
+	public static ApplicationLauncher getCurrentLauncher() {
+		return currentLauncher;
 	}
 
 	/* ---------------------------------------------------------
@@ -48,10 +84,18 @@ public final class ApplicationLauncher extends BaseApplication {
 			configureTray();
 		// Configure window
 		primaryStage.setTitle(AppHelper.appProperties.getProperty("app.name"));
-		primaryStage.initStyle(StageStyle.UNDECORATED);
+		primaryStage.getIcons().add(
+			new Image(UtilsHelper.getResourceStreamSafe(
+				AppHelper.appProperties.getProperty("app.icon")
+			))
+		);
+		if (trayIconFX != null)
+			primaryStage.initStyle(StageStyle.UNDECORATED);
 		primaryStage.setAlwaysOnTop(true);
 		primaryStage.focusedProperty().addListener((observable, oldValue, newValue) -> {
-			if (!newValue) primaryStage.hide();
+			if (trayIconFX != null) {
+				if (!newValue) primaryStage.hide();
+			}
 		});
 		// Display window
 		configureScene();
@@ -68,13 +112,19 @@ public final class ApplicationLauncher extends BaseApplication {
 		Rectangle2D screenSize = ScreenUtils.getScreenSize(null);
 		Rectangle2D winSize = ScreenUtils.getScreenSizePercent(
 			null,
-			new Dimension2D(35, 95)
+			new Dimension2D(32, 95)
 		);
 		// Create scene
 		Scene mainScene = new Scene(parent, winSize.getWidth(), winSize.getHeight());
 		primaryStage.setScene(mainScene);
+		// Configure scene
+		Platform.runLater(() ->
+			mainScene.getStylesheets().add(UtilsHelper.getResourceSafe(
+				AppHelper.appProperties.getProperty("app.theme.dark")
+			).toExternalForm())
+		);
 		// Configure position
-		primaryStage.setX(screenSize.getWidth() - (winSize.getWidth() + 10));
+		primaryStage.setX(screenSize.getWidth() - (winSize.getWidth() + 60));
 		primaryStage.setY(screenSize.getHeight() - (winSize.getHeight() + 10));
 	}
 
@@ -93,6 +143,24 @@ public final class ApplicationLauncher extends BaseApplication {
 		trayIconFX.addPopupItemSelectionListener(event -> Platform.runLater(() ->
 			onTrayPopupItemSelected(event)
 		));
+	}
+
+	/* ---------------------------------------------------------
+	 *
+	 * Implemented methods
+	 *
+	 * --------------------------------------------------------- */
+
+	/**
+	 * Called when select one option in exception alert
+	 *
+	 * @param buttonType Optional button type
+	 */
+	@Override
+	protected void onExceptionAlertSelection(Optional<ButtonType> buttonType) {
+		// Exit application
+		Platform.exit();
+		System.exit(0);
 	}
 
 	/* ---------------------------------------------------------
@@ -133,19 +201,6 @@ public final class ApplicationLauncher extends BaseApplication {
 				System.exit(0);
 				break;
 		}
-	}
-
-	/**
-	 * Check if value is valid separator
-	 *
-	 * @param value Target value to check
-	 * @return Match result
-	 */
-	private static boolean isSeparator(String value) {
-		Pattern pattern = Pattern.compile("^(-){3,}$", Pattern.CASE_INSENSITIVE);
-		Matcher matcher = pattern.matcher(value);
-
-		return matcher.matches();
 	}
 
 }

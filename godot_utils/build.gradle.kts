@@ -34,7 +34,7 @@ dependencies {
 	/* sqlite dependencies */
 	implementation("org.xerial:sqlite-jdbc:3.34.0")
 	/* custom dependencies */
-	implementation("com.github.ushiosan23:networkutils:0.0.3")
+	implementation("com.github.ushiosan23:networkutils:0.0.4")
 	/* test */
 	implementation("junit", "junit", "4.12")
 }

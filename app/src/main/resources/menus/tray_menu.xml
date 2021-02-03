@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <menu name="tray_menu">
+	<!-- Open action menu -->
 	<item name="Open" command="open"/>
+	<!-- Configuration action menu -->
 	<item name="Configuration" command="config"/>
+	<!-- Separator menu -->
 	<separator/>
+	<!-- Quit action menu -->
 	<item name="Quit" command="quit"/>
 </menu>

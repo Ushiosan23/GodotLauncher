@@ -44,7 +44,7 @@ dependencies {
 	/* basic dependencies */
 	implementation("org.jetbrains:annotations:19.0.0")
 	/* custom dependencies */
-	implementation("com.github.ushiosan23:javafxcontrols:0.0.2")
+	implementation("com.github.ushiosan23:javafxcontrols:0.0.3")
 	implementation(project(":godot_utils"))
 	/* test */
 	implementation("junit", "junit", "4.12")

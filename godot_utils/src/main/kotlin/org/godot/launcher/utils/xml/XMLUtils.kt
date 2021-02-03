@@ -35,6 +35,7 @@ object XMLUtils {
 	 * @param document Target file url
 	 * @return [Document] with xml data
 	 */
+	@JvmStatic
 	fun loadXML(document: URL): Document = loadXML(document.openStream())
 
 }

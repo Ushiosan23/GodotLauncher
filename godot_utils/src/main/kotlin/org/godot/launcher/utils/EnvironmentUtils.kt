@@ -1,6 +1,7 @@
 package org.godot.launcher.utils
 
 import org.godot.launcher.utils.db.DBConnector
+import org.godot.launcher.utils.server.ServerConnector
 import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.Paths
@@ -21,7 +22,7 @@ object EnvironmentUtils {
 	 * Environment directory
 	 */
 	val environmentDir: String
-		get() = Resources.environMenResources.getProperty("env.config.dir")
+		get() = Resources.environmentResources.getProperty("utils.environment.dir")
 
 	/**
 	 * Full path dir
@@ -45,6 +46,9 @@ object EnvironmentUtils {
 			Files.createDirectories(environmentPath)
 		// Initialize database
 		DBConnector.initializeConnector()
+		ServerConnector.initializeServer(
+			Resources.environmentResources.getProperty("utils.server.url")
+		)
 	}
 
 	/**
@@ -66,14 +70,9 @@ object EnvironmentUtils {
 		/**
 		 * Environment properties
 		 */
-		val environMenResources: Properties = Properties()
-
-		/**
-		 * Initialize resources object
-		 */
-		init {
-			environMenResources.load(UtilsHelper.getResourceStream("gd_config.properties")!!)
-		}
+		@JvmStatic
+		val environmentResources: Properties =
+			UtilsHelper.getPropertiesFrom("utils_config.properties")
 
 	}
 }

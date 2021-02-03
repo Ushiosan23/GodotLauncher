@@ -3,7 +3,7 @@ package org.godot.launcher.utils.engine
 /**
  * Engine type
  */
-enum class EngineType(private val typeName: String) {
+enum class EngineType(val typeName: String) {
 	Standard("Standard"), // Default type engine
 	Mono("Mono"); // Mono version type engine
 

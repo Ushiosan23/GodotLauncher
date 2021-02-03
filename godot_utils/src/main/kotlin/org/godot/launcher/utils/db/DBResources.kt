@@ -5,7 +5,6 @@ import org.godot.launcher.utils.UtilsHelper
 import java.io.InputStream
 import java.nio.file.Path
 import java.nio.file.Paths
-import java.util.*
 
 /**
  * Object with all database tables
@@ -22,14 +21,9 @@ internal object DBResources {
 	 * Get sql file location
 	 */
 	val sqlCreationFile: InputStream
-		get() = UtilsHelper.getResourceStream(
-			databaseProperties.getProperty("db.config.sqlTablesLocation")
-		)!!
-
-	/**
-	 * Database properties
-	 */
-	val databaseProperties: Properties = Properties()
+		get() = UtilsHelper.getResourceStreamSafe(
+			EnvironmentUtils.Resources.environmentResources.getProperty("utils.database.sqlLocation")
+		)
 
 	/**
 	 * Get database connection
@@ -37,32 +31,18 @@ internal object DBResources {
 	val databaseLocation: Path
 		get() = Paths.get(
 			EnvironmentUtils.environmentPath.toString(),
-			databaseProperties.getProperty("db.config.fileName")
+			EnvironmentUtils.Resources.environmentResources.getProperty("utils.database.filename")
 		)
 
 	/**
 	 * Get database connection url
 	 */
 	val databaseURL: String
-		get() = databaseProperties
-			.getProperty("db.config.url")
+		get() = EnvironmentUtils.Resources.environmentResources
+			.getProperty("utils.database.url")
 			.format(
-				databaseLocation.toString().replace(Regex("(//|\\\\)"), "/")
+				databaseLocation.toString().replace(Regex("//|\\\\"), "/")
 			)
-
-	/* ---------------------------------------------------------
-	 *
-	 * Initializer
-	 *
-	 * --------------------------------------------------------- */
-
-	/**
-	 * Initialize method
-	 */
-	init {
-		// load database properties
-		databaseProperties.load(UtilsHelper.getResourceStream("db/database.properties")!!)
-	}
 
 	/* ---------------------------------------------------------
 	 *

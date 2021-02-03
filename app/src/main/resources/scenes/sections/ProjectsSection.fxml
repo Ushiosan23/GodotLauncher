@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import org.godot.launcher.controls.IcomoonButton?>
+
+<!-- Projects container -->
+<VBox xmlns="http://javafx.com/javafx"
+	  xmlns:fx="http://javafx.com/fxml"
+	  fx:controller="org.godot.launcher.controller.section.ProjectsSectionController">
+	<!-- Controls -->
+	<BorderPane styleClass="header_content">
+		<left>
+			<HBox styleClass="content_box">
+				<Label styleClass="title_content">Projects</Label>
+			</HBox>
+		</left>
+		<right>
+			<HBox styleClass="content_box">
+				<IcomoonButton styleClass="button_content" fx:id="projectMenuButton" icon="&#xe93c;"/>
+			</HBox>
+		</right>
+	</BorderPane>
+	<!-- Project container -->
+	<ScrollPane fx:id="projectScrollPane" styleClass="section_background" VBox.vgrow="ALWAYS">
+		<VBox fx:id="projectContainer"/>
+	</ScrollPane>
+
+</VBox>

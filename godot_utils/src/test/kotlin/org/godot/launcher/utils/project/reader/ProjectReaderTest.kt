@@ -1,6 +1,5 @@
 package org.godot.launcher.utils.project.reader
 
-import org.godot.launcher.utils.project.reder.ProjectReader
 import org.junit.Test
 import java.io.File
 

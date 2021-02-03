@@ -3,7 +3,7 @@ package org.godot.launcher.utils.project
 import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable
 import org.godot.launcher.utils.engine.EngineVersion
-import org.godot.launcher.utils.project.reder.ProjectReader
+import org.godot.launcher.utils.project.reader.ProjectReader
 import org.godot.launcher.utils.serialize.ini.Ini
 import java.io.File
 import java.io.IOException

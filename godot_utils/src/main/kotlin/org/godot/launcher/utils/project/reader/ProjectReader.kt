@@ -1,4 +1,4 @@
-package org.godot.launcher.utils.project.reder
+package org.godot.launcher.utils.project.reader
 
 import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import org.godot.launcher.controls.IcomoonButton?>
+
+<!-- Engines container -->
+<VBox xmlns="http://javafx.com/javafx"
+	  xmlns:fx="http://javafx.com/fxml"
+	  fx:controller="org.godot.launcher.controller.section.EnginesSectionController">
+	<!-- Controls -->
+	<BorderPane styleClass="header_content">
+		<left>
+			<HBox styleClass="content_box">
+				<Label styleClass="title_content">Installed</Label>
+			</HBox>
+		</left>
+		<right>
+			<HBox styleClass="content_box">
+				<IcomoonButton styleClass="button_content" fx:id="engineMenuButton" icon="&#xe93c;"/>
+			</HBox>
+		</right>
+	</BorderPane>
+	<!-- Engine container -->
+	<ScrollPane fx:id="engineScrollPane" styleClass="section_background" VBox.vgrow="ALWAYS">
+		<VBox fx:id="engineContainer"/>
+	</ScrollPane>
+
+</VBox>
