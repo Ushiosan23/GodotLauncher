@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<tab-menu>
-	<!-- Section projects -->
-	<item name="Projects" section="scenes/sections/ProjectsSection.fxml"/>
-	<!-- Section engines -->
-	<item name="Engines" section="scenes/sections/EnginesSection.fxml"/>
-</tab-menu>
